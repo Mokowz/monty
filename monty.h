@@ -54,5 +54,7 @@ typedef struct vars_s
 extern vars_t vars;
 
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
+void free_stack(stack_t *head);
+void s_pall(stack_t **head, unsigned int count);
 
 #endif
