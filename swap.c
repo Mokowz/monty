@@ -1,4 +1,4 @@
-#icnlude "monty.h"
+#include "monty.h"
 /**
  * s_swap - swaps the top 2 elemets
  * @head: Top
@@ -20,7 +20,7 @@ void s_swap(stack_t **head, unsigned int count)
 		fprintf(stderr, "L%u: can't swap, stack too short\n", count);
 		fclose(vars.file);
 		free(vars.content);
-		free_stcak(*head);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	temp = *head;
