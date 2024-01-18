@@ -7,7 +7,7 @@
 void s_pall(stack_t **head, unsigned int count)
 {
 	stack_t *temp;
-	(void)counter;
+	(void)count;
 
 	temp = *head;
 	if (temp == NULL)

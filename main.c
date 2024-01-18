@@ -6,7 +6,7 @@ vars_t vars = {NULL, NULL, NULL, 0};
  * @argv: File location
  * Return: 0
  */
-int main(int argc, cahr *argv[])
+int main(int argc, char *argv[])
 {
 	char *par;
 	FILE *file;
@@ -23,7 +23,7 @@ int main(int argc, cahr *argv[])
 	file = fopen(argv[1], "r");
 	vars.file = file;
 
-	(if file == NULL)
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
@@ -34,7 +34,7 @@ int main(int argc, cahr *argv[])
 		read_lines = getline(&par, &size, file);
 		vars.content = par;
 		count++;
-		(if read_lines > 0)
+		if (read_lines > 0)
 		{
 			execute(par, &stack, count, file);
 		}
