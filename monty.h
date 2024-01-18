@@ -62,5 +62,7 @@ void s_swap(stack_t **head, unsigned int count);
 void s_add(stack_t **head, unsigned int count);
 void s_nop(stack_t **head, unsigned int count);
 void s_sub(stack_t **head, unsigned int count);
+void s_push(stack_t **head, unsigned int count);
+void addnode(stack_t **head, int new);
 
 #endif

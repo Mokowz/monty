@@ -10,7 +10,7 @@
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 {
 	instruction_t ops[] = {
-		/*{"push", s_push},*/
+		{"push", s_push},
 		{"pall", s_pall},
 		{"pint", s_pint},
 		{"pop", s_pop},
