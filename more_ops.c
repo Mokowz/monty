@@ -1,40 +1,83 @@
 #include "monty.h"
 
 /**
- * nop_func - implement the nop function
- * @stack: stack
- * @line_number: line number
- */
-void nop_func(stack_t **stack, unsigned int line_number)
-{
-	(void) stack;
-	(void) line_number;
-}
-
-/**
- * swap_func - swaps the top two elements of the stack
- * @stack: stack
- * @line_number: line number
+ * _mod - computes the rest of the division of the second element
+ * by the top element of the stack
+ * @doubly: head of the linked list
+ * @cline: line number;
+ * Return: no return
  */
 
-void swap_func(stack_t **stack, unsigned int line_number)
+void _mod(stack_t **doubly, unsigned int cline)
 {
-	stack_t *top = NULL;
-	stack_t *second = NULL;
+	int m = 0;
+	stack_t *boop = NULL;
 
-	top = *stack;
-	if (top == NULL || top->next == NULL)
+	boop = *doubly;
+
+	for (; boop != NULL; boop = boop->next, m++)
+		;
+
+	if (m < 2)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
+		dprintf(2, "L%u: can't mod, stack too short\n", cline);
+		free_glob_vars();
 		exit(EXIT_FAILURE);
 	}
-	second = (*stack)->next;
 
-	top->prev = second;
-	second->prev = NULL;
-	top->next = second->next;
-	second->next = top;
+	if ((*doubly)->n == 0)
+	{
+		dprintf(2, "L%u: division by zero\n", cline);
+		free_glob_vars();
+		exit(EXIT_FAILURE);
+	}
 
-	*stack = second;
+	boop = (*doubly)->next;
+	boop->n %= (*doubly)->n;
+	_pop(doubly, cline);
+}
+/**
+ * _pstr - prints the string of the stack
+ *
+ * @doubly: head of the linked list
+ * @cline: line number;
+ * Return: no return
+ */
+void _pstr(stack_t **doubly, unsigned int cline)
+{
+	stack_t *boop;
+	(void)cline;
 
+	boop = *doubly;
+
+	while (boop && boop->n > 0 && boop->n < 128)
+	{
+		printf("%c", boop->n);
+		boop = boop->next;
+	}
+
+	printf("\n");
+}
+/**
+ * _pchar - print the char value of the first element
+ *
+ * @doubly: head of the linked list
+ * @cline: line number;
+ * Return: no return
+ */
+void _pchar(stack_t **doubly, unsigned int cline)
+{
+	if (doubly == NULL || *doubly == NULL)
+	{
+		dprintf(2, "L%u: can't pchar, stack empty\n", cline);
+		free_glob_vars();
+		exit(EXIT_FAILURE);
+	}
+	if ((*doubly)->n < 0 || (*doubly)->n >= 128)
+	{
+		dprintf(2, "L%u: can't pchar, value out of range\n", cline);
+		free_glob_vars();
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*doubly)->n);
 }
